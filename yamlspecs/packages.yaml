@@ -1,0 +1,10 @@
+---
+bootstrap:
+system:
+  - libXScrnSaver
+build:
+  - bioconda
+  - bioconda-module
+manifest:
+  - "{{build}}"
+  - "{{system}}"

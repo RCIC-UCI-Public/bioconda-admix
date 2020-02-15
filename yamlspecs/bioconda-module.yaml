@@ -1,0 +1,5 @@
+!include bioconda.yaml
+!include rcic-module.yaml
+---
+- package: bioconda module
+  category: LANGUAGES

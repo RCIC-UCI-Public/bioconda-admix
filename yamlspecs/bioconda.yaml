@@ -5,8 +5,13 @@
   name: "{{basename}}"
   versions: !include versions.yaml
   version: "{{versions.miniconda2}}"
-  vendor_source: https://repo.anaconda.com/miniconda/Miniconda2-{{version}}-Linux-x86_64.sh
-  src_tarball: Miniconda-{{version}}-Linux-x86_64.sh
+  # this is pscyhedelic because anaconda repo does not have the latest release distro
+  # but does ib place updates when you try to isntall packages. There is not way to
+  # prevent this. To keep version consistent, to gymnastics below with availver
+  # in palce of version. Who invented conda? Why???????????
+  availver: "{{versions.miniconda2_avail}}"
+  vendor_source: https://repo.anaconda.com/miniconda/Miniconda2-{{availver}}-Linux-x86_64.sh
+  src_tarball: Miniconda-{{availver}}-Linux-x86_64.sh
   src_dir: .
   addfile:
     - condarc
@@ -17,13 +22,14 @@
     Based on Miniconda2 {{version}} for Linux installer 64bit
     Uses python 2.7.
   packset1: bam2fastx bax2bam blasr pbgcpp genomicconsensus isoseq3 lima minorseq pbbam pbccs 
-  packset2: pbcommand pbcopper pbcore pbcoretools pblaa pbalign pbmm2 pbsv recalladapters 
+  packset2: pbcommand pbcopper=1.3.0 pbcore pbcoretools pblaa pbalign pbmm2 pbsv recalladapters 
   build:
     configure: echo no configure required 
     pkgmake: >
       mkdir -p {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc {{root}};
+      (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (cd {{root}}; bin/conda install -c bioconda -y {{packset1}} {{packset2}});
       {{root}}/bin/conda clean -p -t -y
     target: 
@@ -31,4 +37,3 @@
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/
   rpm: !include rpm.extras.yaml
-

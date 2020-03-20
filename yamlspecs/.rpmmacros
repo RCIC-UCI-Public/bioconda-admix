@@ -1,5 +1,0 @@
-%_topdir /export/repositories/bioconda-admix/yamlspecs/tmpbuild/../../
-%_buildrootdir /export/repositories/bioconda-admix/yamlspecs/tmpbuild/bioconda_4.7.12.1.buildroot
-%buildroot /export/repositories/bioconda-admix/yamlspecs/tmpbuild/bioconda_4.7.12.1.buildroot
-%_var	/var
-%debug_package	%{nil}

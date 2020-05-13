@@ -1,8 +1,7 @@
 !include rcic-package.yaml
 ---
 - package: bioconda 
-  basename: bioconda 
-  name: "{{basename}}"
+  name: bioconda 
   versions: !include versions.yaml
   version: "{{versions.miniconda2}}"
   # this is pscyhedelic because anaconda repo does not have the latest release distro

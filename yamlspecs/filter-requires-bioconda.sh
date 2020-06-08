@@ -11,4 +11,9 @@
     -e '/libcblas.so/d' \
     -e '/import/d' \
     -e '/^"/d' \
-    -e '/^#/d'
+    -e '/^#/d' \
+    -e '/perl(VMS::Filespec)/d' -e '/perl(unicore::Name)/d' \
+    -e '/perl(Foundation)/d' -e '/perl(Mac::BuildTools)/d' \
+    -e '/package/d' -e '/perl(Mac::InternetConfig)/d' \
+    -e '/perl(VMS::Stdio)/d' -e '/libcrypto.so.1.0.0()(64bit)/d'
+

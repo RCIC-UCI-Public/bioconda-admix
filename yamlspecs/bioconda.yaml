@@ -1,4 +1,5 @@
 !include rcic-package.yaml
+!include rpm.yaml
 ---
 - package: bioconda 
   name: bioconda 
@@ -35,4 +36,5 @@
   install:
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/
-  rpm: !include rpm.extras.yaml
+  rpm:
+    extras: *RpmConda

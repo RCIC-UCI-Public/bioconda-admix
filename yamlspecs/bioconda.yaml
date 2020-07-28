@@ -37,6 +37,5 @@
   install:
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/
-
   rpm:
     extras: *RpmNone

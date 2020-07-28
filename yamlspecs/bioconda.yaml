@@ -1,9 +1,11 @@
 !include rcic-package.yaml
+!include rpm.yaml
 ---
 - package: bioconda 
   name: bioconda 
   versions: !include versions.yaml
   version: "{{versions.miniconda2}}"
+  release: "2"
   # this is pscyhedelic because anaconda repo does not have the latest release distro
   # but does ib place updates when you try to isntall packages. There is not way to
   # prevent this. To keep version consistent, to gymnastics below with availver
@@ -14,7 +16,6 @@
   src_dir: .
   addfile:
     - condarc
-    - filter-requires-{{name}}.sh
   description: |
     PacBio Secondary Analysis Tools on Bioconda from
     https://github.com/PacificBiosciences/pbbioconda
@@ -32,7 +33,10 @@
       (cd {{root}}; bin/conda install -c bioconda -y {{packset1}} {{packset2}});
       {{root}}/bin/conda clean -p -t -y
     target: 
+    modules:
   install:
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/
-  rpm: !include rpm.extras.yaml
+
+  rpm:
+    extras: *RpmNone

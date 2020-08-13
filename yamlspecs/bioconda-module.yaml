@@ -3,3 +3,4 @@
 ---
 - package: bioconda module
   category: LANGUAGES
+  release: 2

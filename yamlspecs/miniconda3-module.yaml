@@ -1,0 +1,5 @@
+!include miniconda3.yaml
+!include rcic-module.yaml
+---
+- package: miniconda3 module
+  category: LANGUAGES

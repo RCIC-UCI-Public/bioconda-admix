@@ -42,3 +42,18 @@ Currently the following are added:
 | pbalign | pbmm2 | pbsv | recalladapters | |
 | - | - | - | - | - |
 
+
+## Miniconda3
+
+This is for miniconda3 and qiiem2
+Use instructions on https://docs.qiime2.org/2020.8/install/native
+
+wget https://data.qiime2.org/distro/core/qiime2-2020.8-py36-linux-conda.yml
+
+Channels set for miniconda3 in condarc3 file:
+
+channels:
+  - qiime2/label/r2020.8
+  - conda-forge
+  - bioconda
+  - defaults

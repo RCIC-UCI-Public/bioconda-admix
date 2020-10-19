@@ -1,0 +1,41 @@
+!include rcic-package.yaml
+!include rpm.yaml
+---
+- package: miniconda3
+  name: miniconda3
+  versions: !include versions.yaml
+  version: "{{versions.miniconda3}}"
+  availver: "{{versions.miniconda3_avail}}"
+  vendor_source: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  src_tarball: Miniconda3-{{availver}}-Linux-x86_64.sh
+  src_dir: .
+  qiime2yaml: qiime2-{{versions.qiime2}}-py36-linux-conda.yml
+  qiime2url: https://data.qiime2.org/distro/core/{{qiime2yaml}}
+  addfile:
+    - condarc3
+  description: |
+    Miniconda3 {{version}} with python 3.8 for Linux installer 64bit.
+    Includes qimme2-{{versions.qiime2}} env
+  build:
+    configure: echo no configure required
+    preconfigure: if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml}} ]; then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{qiime2url}}; fi 
+    pkgmake: >
+      mkdir -p {{root}};
+      bash {{src_tarball}} -b -u -p {{root}};
+      $(INSTALL) condarc3 {{root}}/condarc;
+      /usr/bin/cp  $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}};
+      (cd {{root}}; bin/conda update -n base -c defaults -y conda);
+      (cd {{root}}; bin/conda env create -n qiime2-{{versions.qiime2}} --file {{qiime2yaml}});
+      rm -rf {{root}}/{{qiime2yaml}};
+      {{root}}/bin/conda clean -a -f -y
+    target: 
+    modules: ""
+  install:
+    makeinstall: 
+      cp -pR {{root}}/* $(ROOT)/{{root}}/;
+      rm -rf {{parent}}
+      # above rm deletes created distro from /opt/apps
+  rpm:
+    extras: *RpmNone
+
+#   NOTE in pkgmake conda clean removes cash, indices, all download  packages from pkgs/

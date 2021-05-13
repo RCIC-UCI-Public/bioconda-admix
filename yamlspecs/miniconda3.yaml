@@ -3,6 +3,7 @@
 ---
 - package: miniconda3
   name: miniconda3
+  release: 2
   versions: !include versions.yaml
   version: "{{versions.miniconda3}}"
   availver: "{{versions.miniconda3_avail}}"
@@ -11,22 +12,34 @@
   src_dir: .
   qiime2yaml: qiime2-{{versions.qiime2}}-py36-linux-conda.yml
   qiime2url: https://data.qiime2.org/distro/core/{{qiime2yaml}}
+  qiime2yaml_latest: qiime2-{{versions.qiime2_latest}}-py36-linux-conda.yml
+  qiime2url_latest: https://data.qiime2.org/distro/core/{{qiime2yaml_latest}}
   addfile:
     - condarc3
   description: |
     Miniconda3 {{version}} with python 3.8 for Linux installer 64bit.
     Includes qimme2-{{versions.qiime2}} env
+    Includes qimme2-{{versions.qiime2_latest}} env
+
+
   build:
     configure: echo no configure required
-    preconfigure: if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml}} ]; then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{qiime2url}}; fi 
+    preconfigure: >
+       if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml}} ]; 
+       then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{qiime2url}}; fi;
+       if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml_latest}} ]; 
+       then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml_latest}} {{qiime2url_latest}}; fi
     pkgmake: >
       mkdir -p {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
       /usr/bin/cp  $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}};
+      /usr/bin/cp  $(REDHAT.ROOT)/sources/{{qiime2yaml_latest}} {{root}};
       (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (cd {{root}}; bin/conda env create -n qiime2-{{versions.qiime2}} --file {{qiime2yaml}});
       rm -rf {{root}}/{{qiime2yaml}};
+      (cd {{root}}; bin/conda env create -n qiime2-{{versions.qiime2_latest}} --file {{qiime2yaml_latest}});
+      rm -rf {{root}}/{{qiime2yaml_latest}};
       {{root}}/bin/conda clean -a -f -y
     target: 
     modules: ""

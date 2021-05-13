@@ -8,6 +8,7 @@ build:
   - miniconda3
   - miniconda3-module
   - qiime2-module
+  - qiime2-module-latest
 manifest:
   - "{{build}}"
   - "{{system}}"

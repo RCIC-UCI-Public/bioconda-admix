@@ -20,10 +20,7 @@
     Miniconda3 {{version}} with python 3.8 for Linux installer 64bit.
     Includes qimme2-{{versions.qiime2}} env
     Includes qimme2-{{versions.qiime2_latest}} env
-
-
   build:
-    configure: echo no configure required
     preconfigure: >
        if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml}} ]; 
        then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{qiime2url}}; fi;
@@ -41,8 +38,6 @@
       (cd {{root}}; bin/conda env create -n qiime2-{{versions.qiime2_latest}} --file {{qiime2yaml_latest}});
       rm -rf {{root}}/{{qiime2yaml_latest}};
       {{root}}/bin/conda clean -a -f -y
-    target: 
-    modules: ""
   install:
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/;
@@ -51,4 +46,4 @@
   rpm:
     extras: *RpmNone
 
-#   NOTE in pkgmake conda clean removes cash, indices, all download  packages from pkgs/
+#   NOTE in pkgmake 'conda clean' removes cash, indices, all download packages from pkgs/

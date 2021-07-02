@@ -24,7 +24,6 @@
   packset1: bam2fastx bax2bam blasr pbgcpp genomicconsensus isoseq3 lima minorseq pbbam pbccs 
   packset2: pbcommand pbcopper=1.3.0 pbcore pbcoretools pblaa pbalign pbmm2 pbsv recalladapters pb-assembly
   build:
-    configure: echo no configure required 
     pkgmake: >
       mkdir -p {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
@@ -32,8 +31,6 @@
       (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (cd {{root}}; bin/conda install -c bioconda -y {{packset1}} {{packset2}});
       {{root}}/bin/conda clean -p -t -y
-    target: 
-    modules:
   install:
     makeinstall: 
       cp -pR {{root}}/* $(ROOT)/{{root}}/

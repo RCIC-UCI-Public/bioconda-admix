@@ -1,4 +1,0 @@
-!include qiime2-module.yaml 
----
-- package: qiime2 module
-  version: "{{versions.qiime2_latest}}"

@@ -1,0 +1,6 @@
+---
+versions: latest.versions.yaml
+build:
+  - qiime2-module
+manifest:
+  - "{{build}}"

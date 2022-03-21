@@ -1,0 +1,3 @@
+!include versions.yaml
+---
+qiime2: "{{versions.qiime2_latest}}"

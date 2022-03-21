@@ -1,0 +1,6 @@
+---
+versions: versions-qiime2-2021.yaml
+build:
+  - qiime2-module
+manifest:
+  - "{{build}}"

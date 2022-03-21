@@ -1,3 +1,8 @@
 !include versions.yaml
 ---
-qiime2: "{{versions.qiime2_latest}}"
+miniconda3: "4.11.0"
+miniconda3_avail: "py39_4.11.0"
+miniconda3python: "3.9"
+qiime2: "2022.2"
+qiime2_latest:
+qiime2python: "py38"

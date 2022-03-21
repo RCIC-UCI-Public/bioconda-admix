@@ -1,6 +1,8 @@
 ---
 versions: versions-latest.yaml
 build:
+  - miniconda3
+  - miniconda3-module
   - qiime2-module
 manifest:
   - "{{build}}"

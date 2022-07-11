@@ -1,7 +1,7 @@
 !include versions.yaml
 ---
-miniconda3: "4.11.0"
-miniconda3_avail: "py39_4.11.0"
+miniconda3: "4.12.0"
+miniconda3_avail: "py39_4.12.0"
 miniconda3python: "3.9"
 qiime2: "2022.2"
 qiime2_latest:

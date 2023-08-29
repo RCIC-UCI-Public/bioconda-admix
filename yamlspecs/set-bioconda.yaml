@@ -1,0 +1,7 @@
+---
+versions: versions-bioconda.yaml
+build:
+  - bioconda 
+  - bioconda-module
+manifest:
+  - "{{build}}"

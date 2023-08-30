@@ -4,7 +4,7 @@
 ---
 - package: miniconda3
   name: miniconda3
-  release: 2
+  release: 3
   versions: !include versions.yaml
   version: "{{versions.miniconda3}}"
   availver: "{{versions.miniconda3_avail}}"
@@ -23,21 +23,24 @@
        for i in {{versions.qiime2_envs}}; do \
          if [ ! -f $(REDHAT.ROOT)/sources/{{qiime2yaml}} ]; then wget -O $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{qiime2url}}; fi \
        done
-    pkgmake: >
+    configure: echo no configure required
+    pkgmake: echo all work done in install
+  # Requires a bind mount because anaconda hard codes the {{root}} path in
+  # many files. mount $(ROOT)/{{root}} onto {{root}} and install
+  install:
+    makeinstall: >
+      mkdir -p $(ROOT)/{{root}};
       mkdir -p {{root}};
+      mount --bind $(ROOT)/{{root}} {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
       (for i in {{versions.qiime2_envs}}; do /usr/bin/cp $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}}; done);
       (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (for i in {{versions.qiime2_envs}}; do (cd {{root}}; bin/conda env create -n qiime2-$$i --file {{qiime2yaml}}); rm -rf {{root}}/{{qiime2yaml}}; done);
-      {{root}}/bin/conda clean -a -f -y
-  install:
-    makeinstall: 
-      cp -pR {{root}}/* $(ROOT)/{{root}}/;
-      rm -rf {{parent}}
-  rpm:
-    extras: *RpmNone
+      {{root}}/bin/conda clean -a -f -y;
+      umount {{root}}
+  # turn off RPM post-processing (no stripping, post is only compress)
+  rpmAutoReqProv: no
   rpmBuildIdLinks: none
-
-# NOTE: in pkgmake 'conda clean' removes cash, indices, all download packages from pkgs/
-# NOTE: "rm -rf" in makeinstall deletes created distro from /opt/apps
+  rpm:
+    extras: *RpmConda

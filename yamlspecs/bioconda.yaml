@@ -5,7 +5,7 @@
   name: bioconda 
   versions: !include versions.yaml
   version: "{{versions.miniconda2}}"
-  release: "3"
+  release: "4"
   # this is pscyhedelic because anaconda repo does not have the latest release distro
   # but does in place updates when you try to install packages. There is not way to
   # prevent this. To keep version consistent, do gymnastics below with availver
@@ -24,16 +24,23 @@
   packset1: bam2fastx bax2bam blasr pbgcpp genomicconsensus isoseq3 lima minorseq pbbam pbccs 
   packset2: pbcommand pbcopper=1.3.0 pbcore pbcoretools pblaa pbalign pbmm2 pbsv recalladapters pb-assembly
   build:
-    pkgmake: >
+    configure: echo no configure required
+    pkgmake: echo all work done in install
+  # Requires a bind mount because anaconda hard codes the {{root}} path in
+  # many files. mount $(ROOT)/{{root}} onto {{root}} and install
+  install:
+    makeinstall: >
+      mkdir -p $(ROOT)/{{root}};
       mkdir -p {{root}};
+      mount --bind $(ROOT)/{{root}} {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc {{root}};
       (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (cd {{root}}; bin/conda install -c bioconda -y {{packset1}} {{packset2}});
-      {{root}}/bin/conda clean -a -f -y
-  install:
-    makeinstall: 
-      cp -pR {{root}}/* $(ROOT)/{{root}}/
-  rpm:
-    extras: *RpmNone
+      {{root}}/bin/conda clean -a -f -y;
+      umount {{root}}
+  # turn off RPM post-processing (no stripping, post is only compress)
+  rpmAutoReqProv: no
   rpmBuildIdLinks: none
+  rpm:
+    extras: *RpmConda

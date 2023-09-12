@@ -4,7 +4,7 @@
 ---
 - package: miniconda3
   name: miniconda3
-  release: 3
+  release: "{{versions.miniconda3_release}}"
   versions: !include versions.yaml
   version: "{{versions.miniconda3}}"
   availver: "{{versions.miniconda3_avail}}"

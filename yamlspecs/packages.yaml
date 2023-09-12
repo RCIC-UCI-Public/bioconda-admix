@@ -13,3 +13,4 @@ manifest:
 sets:
   - bioconda
   - "2022"
+  - "2023"

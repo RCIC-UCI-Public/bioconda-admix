@@ -5,3 +5,5 @@
 29ca3c4515a23d7e6b7d94358ca51bc79d69be01  sources/Miniconda3-py39_4.11.0-Linux-x86_64.sh 1RhpndRoOdFscZyivI0wbg2NLK3Kmng7X
 91f12cadeb7ff284bbb219e07f24d68ce816e130  sources/Miniconda3-py39_4.12.0-Linux-x86_64.sh 1stN2HskY5bWkhSqN-hpQn6I5aEPO6_Q_
 09530312a3116540ec3a3dea0bec06d8c0ed309f  sources/qiime2-2022.2-py38-linux-conda.yml 1uHS-grKV8oTkEYHm9s-H4K9Uz56oitzc
+c755d4e926999b7a752c2bf04063cb80bc286af8  sources/Miniconda3-py39_23.5.2-Linux-x86_64.sh
+acf91ba4c77c59fa0284c7bcc4a03702328e39d4  sources/qiime2-2023.7-py38-linux-conda.yml

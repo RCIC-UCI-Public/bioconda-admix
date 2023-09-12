@@ -1,0 +1,8 @@
+!include versions.yaml
+---
+miniconda3: "23.5.2"
+miniconda3_avail: "py39_23.5.2"
+miniconda3python: "3.9"
+qiime2: "2023.7"
+qiime2_latest:
+qiime2python: "py38"

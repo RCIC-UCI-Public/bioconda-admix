@@ -1,0 +1,6 @@
+!include packages.yaml
+---
+versions: versions-2023.yaml
+manifest:
+  - "{{build}}"
+  - "{{qiime2}}"

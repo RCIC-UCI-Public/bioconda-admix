@@ -3,3 +3,4 @@
 versions: versions-2022.yaml
 manifest:
   - "{{build}}"
+  - "{{qiime2}}"

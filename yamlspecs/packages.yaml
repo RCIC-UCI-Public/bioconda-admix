@@ -5,11 +5,11 @@ system:
 build:
   - miniconda3
   - miniconda3-module
+qiime2:
   - qiime2-module
 manifest:
   - "{{build}}"
   - "{{system}}"
 sets:
   - bioconda
-  - "2021"
   - "2022"

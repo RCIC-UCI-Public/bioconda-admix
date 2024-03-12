@@ -3,7 +3,7 @@ miniconda3: "4.8.5"
 miniconda3_avail: "py38_4.8.3"
 miniconda3_release: 3
 miniconda3python: "3.8"
-qiime2: "2021.2"
+qiime2:
 qiime2_latest:
 qiime2python: "py36"
 qiime2_envs: "{{versions.qiime2}} {{versions.qiime2_latest}}"

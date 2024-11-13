@@ -7,3 +7,5 @@ miniconda3python: "3.9"
 qiime2: "2023.7"
 qiime2_latest:
 qiime2python: "py38"
+qiime2src: "https://data.qiime2.org/distro/core"
+qiime2distro:

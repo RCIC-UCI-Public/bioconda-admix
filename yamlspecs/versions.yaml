@@ -7,3 +7,5 @@ qiime2:
 qiime2_latest:
 qiime2python: "py36"
 qiime2_envs: "{{versions.qiime2}} {{versions.qiime2_latest}}"
+qiime2src: "https://data.qiime2.org/distro/core"
+qiime2distro:

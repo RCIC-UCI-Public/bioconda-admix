@@ -3,6 +3,9 @@
 miniconda3: "4.12.0"
 miniconda3_avail: "py39_4.12.0"
 miniconda3python: "3.9"
-qiime2: "2022.2"
+qiime2:
+#qiime2: "2022.2"
 qiime2_latest:
 qiime2python: "py38"
+qiime2src: "https://data.qiime2.org/distro/core"
+qiime2distro:

@@ -1,6 +1,8 @@
 !include packages.yaml
 ---
 versions: versions-2022.yaml
+build:
+  - miniconda3
+  - miniconda3-module
 manifest:
   - "{{build}}"
-  - "{{qiime2}}"

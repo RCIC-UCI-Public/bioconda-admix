@@ -4,5 +4,6 @@ versions: versions-2022.yaml
 build:
   - miniconda3
   - miniconda3-module
+  - "{{qiime2}}"
 manifest:
   - "{{build}}"

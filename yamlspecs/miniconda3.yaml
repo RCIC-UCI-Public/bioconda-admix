@@ -36,7 +36,6 @@
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
       (for i in {{versions.qiime2_envs}}; do /usr/bin/cp $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}}; done);
-      (cd {{root}}; bin/conda update -n base -c defaults -y conda);
       (for i in {{versions.qiime2_envs}}; do (cd {{root}}; bin/conda env create -n qiime2-$$i --file {{qiime2yaml}}); rm -rf {{root}}/{{qiime2yaml}}; done);
       {{root}}/bin/conda clean -a -f -y;
       umount {{root}}
@@ -45,3 +44,8 @@
   rpmBuildIdLinks: none
   rpm:
     extras: *RpmConda
+
+#  This line before creating conda enviornments woudl update conda
+#  to the latest version available at the t iem of the build
+# (cd {{root}}; bin/conda update -n base -c defaults -y conda);
+# Tihs makes it inconsistent with the version we specify in the module.

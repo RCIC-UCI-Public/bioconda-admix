@@ -15,7 +15,9 @@ one by one will surely break some tools.
 
 Hence - this repo.
 
-### Install miniconda
+### Bioconda
+
+Based on older Miniconda2
 
 Use instructions available on https://bioconda.github.io/ 
 for installing conda and its channels. 
@@ -23,13 +25,11 @@ for installing conda and its channels.
 - Miniconda distro from https://repo.anaconda.com/miniconda/
 - Miniconda distro hash information https://conda.io/en/latest/miniconda_hashes.html
 
-Channels set for conda:
-
-- conda-forge
-- bioconda
-- defaults
-
-### Packages added via conda
+Channels set for conda in condarc file:
+  channels:
+    - conda-forge
+    - bioconda
+    - defaults
 
 The following packages are added to the build and are installed via conda
 See packages info on the Pacific Biosciences github https://github.com/PacificBiosciences/pbbioconda
@@ -46,16 +46,19 @@ Currently the following are added:
 ## Miniconda3
 
 This is for miniconda3 and qiiem2
-Use instructions on https://docs.qiime2.org/2020.8/install/native
+Use instructions on https://docs.qiime2.org/, the URL redirects to the latest available version.
 
-wget https://data.qiime2.org/distro/core/qiime2-2020.8-py36-linux-conda.yml
+Download  qiime2-VERSION-pyXX-linux.yaml per available distro for a given version.
 
 Channels set for miniconda3 in condarc3 file:
+  channels:
+    - qiime2
+    - conda-forge
+    - bioconda
+    - defaults
 
-channels:
-  - qiime2/label/r2020.8
-  - conda-forge
-  - bioconda
-  - defaults
+Note, do not set qiime channel tied to a specifc version as qiime2/label/r2020.8
 
----
+When building qiime environments, do not run conda update as this would
+update conda version and some packages to the latest available on the day od the build
+making it inconsistent with the version of the module.

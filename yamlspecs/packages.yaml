@@ -3,8 +3,6 @@ bootstrap:
 system:
   - libXScrnSaver
 build:
-  - miniconda3
-  - miniconda3-module
 qiime2:
   - qiime2-module
 manifest:
@@ -12,6 +10,5 @@ manifest:
   - "{{system}}"
 sets:
   - bioconda
-  - "2022"
   - "2023"
   - "2024"

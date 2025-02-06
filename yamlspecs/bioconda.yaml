@@ -5,7 +5,7 @@
   name: bioconda 
   versions: !include versions.yaml
   version: "{{versions.miniconda2}}"
-  release: "4"
+  release: "{{versions.miniconda2_release}}"
   # this is pscyhedelic because anaconda repo does not have the latest release distro
   # but does in place updates when you try to install packages. There is not way to
   # prevent this. To keep version consistent, do gymnastics below with availver

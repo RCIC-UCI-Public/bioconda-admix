@@ -8,4 +8,5 @@ qiime2: "2024.10"
 qiime2_latest:
 qiime2python: "py310"
 qiime2src: "https://data.qiime2.org/distro/amplicon"
+qiime2_envs: "{{versions.qiime2}} {{versions.qiime2_latest}}"
 qiime2distro: "amplicon-"

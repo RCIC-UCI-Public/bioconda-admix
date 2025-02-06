@@ -1,3 +1,5 @@
+!include versions.yaml
 ---
 miniconda2: "4.8.3"
 miniconda2_avail: "4.7.12.1"
+miniconda2_release: 4

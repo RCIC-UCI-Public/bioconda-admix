@@ -8,4 +8,5 @@ qiime2: "2023.7"
 qiime2_latest:
 qiime2python: "py38"
 qiime2src: "https://data.qiime2.org/distro/core"
+qiime2_envs: "{{versions.qiime2}} {{versions.qiime2_latest}}"
 qiime2distro:

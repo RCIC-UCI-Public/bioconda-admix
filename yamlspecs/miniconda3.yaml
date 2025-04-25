@@ -29,10 +29,11 @@
   # Requires a bind mount because anaconda hard codes the {{root}} path in
   # many files. mount $(ROOT)/{{root}} onto {{root}} and install
   install:
+    bind: !eval "'bindfs' if {{versions.site.os_release}} >= 9 else 'mount --bind'"
     makeinstall: >
       mkdir -p $(ROOT)/{{root}};
       mkdir -p {{root}};
-      mount --bind $(ROOT)/{{root}} {{root}};
+      {{install.bind}}  $(ROOT)/{{root}} {{root}};
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
       (for i in {{versions.qiime2_envs}}; do /usr/bin/cp $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}}; done);

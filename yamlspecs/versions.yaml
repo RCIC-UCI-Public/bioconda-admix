@@ -1,2 +1,3 @@
 ---
 admix: bioconda-admix
+site: !include site.yaml

@@ -17,10 +17,8 @@
   addfile:
     - condarc
   description: |
-    PacBio Secondary Analysis Tools on Bioconda from
+    PacBio Secondary Analysis Tools. Based on Miniconda2 {{version}}, uses python 2.7.
     https://github.com/PacificBiosciences/pbbioconda
-    Based on Miniconda2 {{version}} for Linux installer 64bit
-    Uses python 2.7.
   packset1: bam2fastx bax2bam blasr pbgcpp genomicconsensus isoseq3 lima minorseq pbbam pbccs 
   packset2: pbcommand pbcopper=1.3.0 pbcore pbcoretools pblaa pbalign pbmm2 pbsv recalladapters pb-assembly
   build:

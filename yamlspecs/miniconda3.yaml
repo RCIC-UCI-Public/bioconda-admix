@@ -1,4 +1,3 @@
-#
 !include rcic-package.yaml
 !include rpm.yaml
 ---
@@ -17,8 +16,10 @@
   addfile:
     - condarc3
   description: |
-    Miniconda3 {{version}} with python {{versions.miniconda3python}} for Linux installer 64bit.
-    Includes qiime2 environments {{versions.qiime2_envs}}
+    Miniconda3 with python {{versions.miniconda3python}}
+    Includes qiime2 environments {{versions.qiime2_envs}}.
+  shortdescription: |
+    Miniconda3 with python {{versions.miniconda3python}}.
   build:
     preconfigure: >
        for i in {{versions.qiime2_envs}}; do \

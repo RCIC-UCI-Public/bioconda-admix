@@ -6,10 +6,11 @@
   name: qiime2
   version: "{{versions.qiime2}}"
   description: |
-    QIIME2 {{version}} is a next-generation microbiome bioinformatics platform that
-    is extensible, free, open source, and community developed. Installed with
-    miniconda3 {{versions.miniconda3}} as an environment. To use need to activate via
-    conda activate {{name}}-{{version}}
+    QIIME2 is an environment built for miniconda3 {{versions.miniconda3}}.
+    It provides a next-generation microbiome bioinformatics platform.
+    To use need to activate via conda activate {{name}}-{{version}}.
+  shortdescription: |
+    QIIME2 is an environment built for miniconda3 {{versions.miniconda3}}.
   # redefine below to use miniconda3 values 
   miniconda_name: miniconda3
   miniconda_version: "{{versions.miniconda3}}"

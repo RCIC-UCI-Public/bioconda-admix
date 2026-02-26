@@ -4,6 +4,7 @@ miniconda3: "25.11.1"
 miniconda3_avail: "py313_25.11.1"
 miniconda3_release: 1
 miniconda3python: "3.13"
+miniconda3_mpi: yes
 qiime2: "2025.10"
 qiime2_latest:
 qiime2python: linux-conda.yml

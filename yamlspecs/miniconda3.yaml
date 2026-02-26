@@ -12,11 +12,14 @@
   src_dir: .
   qiime2yaml: qiime2-$$i-{{versions.qiime2python}}
   qiime2url: "{{versions.qiime2src}}"
+  mpiinfo: !ifeq "{{versions.miniconda3_mpi}},yes,If you are using Open MPI please see {{root}}/README.mpi,"
   addfile:
     - condarc3
+    - !ifeq "{{versions.miniconda3_mpi}},yes,README.mpi,"
   description: |
     Miniconda3 with python {{versions.miniconda3python}}
     Includes qiime2 environments {{versions.qiime2_envs}}.
+    {{mpiinfo}}
   shortdescription: |
     Miniconda3 with python {{versions.miniconda3python}}.
   build:
@@ -37,6 +40,7 @@
       export CONDA_PLUGINS_AUTO_ACCEPT_TOS=yes;
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
+      if [ -f README.mpi ]; then $(INSTALL) README.mpi {{root}}/README.mpi; fi;
       (for i in {{versions.qiime2_envs}}; do /usr/bin/cp $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}}; done);
       (for i in {{versions.qiime2_envs}}; do (cd {{root}}; bin/conda env create -n qiime2-$$i --file {{qiime2yaml}}); rm -rf {{root}}/{{qiime2yaml}}; done);
       {{root}}/bin/conda clean -a -f -y;

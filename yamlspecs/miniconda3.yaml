@@ -10,9 +10,8 @@
   vendor_source: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
   src_tarball: Miniconda3-{{availver}}-Linux-x86_64.sh
   src_dir: .
-  qiime2yaml: qiime2-$$i-{{versions.qiime2python}}-linux-conda.yml
-  qiime2src: https://data.qiime2.org/distro/core/{{qiime2yaml}}
-  qiime2url: "{{versions.qiime2src}}/qiime2-{{versions.qiime2distro}}{{versions.qiime2}}-{{versions.qiime2python}}-linux-conda.yml"
+  qiime2yaml: qiime2-$$i-{{versions.qiime2python}}
+  qiime2url: "{{versions.qiime2src}}"
   addfile:
     - condarc3
   description: |
@@ -35,6 +34,7 @@
       mkdir -p $(ROOT)/{{root}};
       mkdir -p {{root}};
       {{install.bind}}  $(ROOT)/{{root}} {{root}};
+      export CONDA_PLUGINS_AUTO_ACCEPT_TOS=yes;
       bash {{src_tarball}} -b -u -p {{root}};
       $(INSTALL) condarc3 {{root}}/condarc;
       (for i in {{versions.qiime2_envs}}; do /usr/bin/cp $(REDHAT.ROOT)/sources/{{qiime2yaml}} {{root}}; done);
@@ -47,7 +47,11 @@
   rpm:
     extras: *RpmConda
 
-#  This line before creating conda enviornments woudl update conda
-#  to the latest version available at the t iem of the build
-# (cd {{root}}; bin/conda update -n base -c defaults -y conda);
-# Tihs makes it inconsistent with the version we specify in the module.
+# The following line if put before creating conda enviornments would update conda
+# to the latest version available at the time of the build:
+#     (cd {{root}}; bin/conda update -n base -c defaults -y conda);
+# This makes it inconsistent with the version we specify in the module,
+# thus we dont do this action.
+# NOTE: reference to versions.qiime2_envs is left from the time we installed two
+# separate qiime enviornments. Live as a place holder i case doulbe enviornments
+# are needed in the future.  Respective structure is already enabled in versions yaml files.

@@ -1,4 +1,5 @@
 ---
+enablerepo: !OScmp ">=, 10, epel,"
 bootstrap:
 system:
   - libXScrnSaver

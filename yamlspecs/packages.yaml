@@ -1,8 +1,7 @@
 ---
-enablerepo: !OScmp ">=, 10, epel,"
 bootstrap:
 system:
-  - libXScrnSaver
+  - !OScmp "<=,9,libXScrnSaver,"
 build:
 qiime2:
   - qiime2-module
